@@ -1,7 +1,9 @@
 package tech.simter.rest.jaxrs;
 
+import javax.annotation.Priority;
 import javax.inject.Named;
 import javax.inject.Singleton;
+import javax.ws.rs.Priorities;
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerResponseContext;
 import javax.ws.rs.container.ContainerResponseFilter;
@@ -18,6 +20,7 @@ import java.io.IOException;
 @Named
 @Singleton
 @Provider
+@Priority(Priorities.USER)
 public class CharsetResponseFilter implements ContainerResponseFilter {
   /**
    * The Default charset
