@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 @Named
 @Singleton
 @Provider
-@Priority(Priorities.AUTHENTICATION)
+@Priority(Priorities.AUTHENTICATION - 100)
 public class LogResponseFilter implements ContainerResponseFilter {
   private static Logger logger = LoggerFactory.getLogger(LogResponseFilter.class);
 

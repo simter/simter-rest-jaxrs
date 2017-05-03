@@ -3,8 +3,10 @@ package tech.simter.rest.jaxrs;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.annotation.Priority;
 import javax.inject.Named;
 import javax.inject.Singleton;
+import javax.ws.rs.Priorities;
 import javax.ws.rs.ProcessingException;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
@@ -21,6 +23,7 @@ import java.util.Map;
 @Named
 @Singleton
 @Provider
+@Priority(Priorities.USER + 100)
 public class ThrowableExceptionMapper implements ExceptionMapper<Throwable> {
   private final static Logger logger = LoggerFactory.getLogger(ThrowableExceptionMapper.class);
   private final Map<Class<?>, Object> mapper;

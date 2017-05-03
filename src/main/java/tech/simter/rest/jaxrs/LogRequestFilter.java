@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 @Named
 @Singleton
 @Provider
-@Priority(Priorities.AUTHENTICATION)
+@Priority(Priorities.AUTHENTICATION - 100)
 public class LogRequestFilter implements ContainerRequestFilter {
   private static Logger logger = LoggerFactory.getLogger(LogRequestFilter.class);
 
