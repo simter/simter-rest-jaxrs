@@ -32,7 +32,10 @@ import java.io.IOException;
 @Priority(Priorities.AUTHENTICATION)
 public class JwtAuthRequestFilter implements ContainerRequestFilter {
   private static Logger logger = LoggerFactory.getLogger(JwtAuthRequestFilter.class);
-  private static final String JWT_HEADER_NAME = "Authorization";
+  /**
+   * The header name to hold JWT token
+   */
+  public static final String JWT_HEADER_NAME = "Authorization";
   private final String secretKey;
   private final boolean abortIfUnauthorized;
 
