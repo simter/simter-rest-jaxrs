@@ -37,6 +37,17 @@
     <url>https://github.com/simter/simter-rest-jaxrs/issues</url>
   </issueManagement>
   <dependencies>
+    <!-- Simter -->
+    <dependency>
+      <groupId>tech.simter</groupId>
+      <artifactId>simter-context</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>tech.simter</groupId>
+      <artifactId>simter-jwt</artifactId>
+    </dependency>
+
+    <!-- Third Party-->
     <dependency>
       <groupId>javax.inject</groupId>
       <artifactId>javax.inject</artifactId>
@@ -53,6 +64,12 @@
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
     </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-beans</artifactId>
+    </dependency>
+
+    <!-- Test -->
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
