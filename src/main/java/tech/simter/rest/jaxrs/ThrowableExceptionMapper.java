@@ -38,7 +38,7 @@ public class ThrowableExceptionMapper implements ExceptionMapper<Throwable> {
 
   @Override
   public Response toResponse(Throwable e) {
-    logger.warn(e.getMessage(), e);
+    if (logger.isDebugEnabled()) logger.debug(e.getMessage(), e);
 
     // ignore jav-rs standard exception
     if (e instanceof WebApplicationException) return ((WebApplicationException) e).getResponse();

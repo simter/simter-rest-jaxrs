@@ -20,7 +20,7 @@ import java.io.IOException;
 @Named
 @Singleton
 @Provider
-@Priority(Priorities.USER)
+@Priority(Priorities.USER - 100)
 public class CharsetResponseFilter implements ContainerResponseFilter {
   /**
    * The Default charset
