@@ -22,6 +22,7 @@ public class CreatedStatusResponseFilter implements ContainerResponseFilter {
   @Override
   public void filter(ContainerRequestContext requestContext, ContainerResponseContext responseContext)
     throws IOException {
+    if (responseContext.getStatus() >= 400) return;
     responseContext.setStatusInfo(Response.Status.CREATED);
   }
 }
