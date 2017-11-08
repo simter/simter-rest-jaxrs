@@ -46,7 +46,7 @@ public class AllowCrossOriginResponseFilter implements ContainerResponseFilter {
    */
   public AllowCrossOriginResponseFilter(@Value("${simter.cors.allow-origins:#{null}}") List<String> allowOrigins,
                                         @Value("${simter.cors.allow-methods:#{null}}") List<String> allowMethods,
-                                        @Value("${simter.cors.allow-methods:#{null}}") List<String> allowHeaders,
+                                        @Value("${simter.cors.allow-headers:#{null}}") List<String> allowHeaders,
                                         @Value("${simter.cors.max-age:#{10}}") int maxAge) {
     this.allowOrigins = allowOrigins == null ? Collections.emptyList() : lowerCase(allowOrigins);
     this.allowMethods = allowMethods == null ? Collections.emptyList() : lowerCase(allowMethods);
