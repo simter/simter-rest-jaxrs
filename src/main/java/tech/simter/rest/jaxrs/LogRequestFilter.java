@@ -2,6 +2,7 @@ package tech.simter.rest.jaxrs;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.FileCopyUtils;
 
 import javax.annotation.Priority;
 import javax.inject.Named;
@@ -12,8 +13,6 @@ import javax.ws.rs.container.ContainerRequestFilter;
 import javax.ws.rs.ext.Provider;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.nio.charset.Charset;
 import java.util.stream.Collectors;
 
 /**
@@ -45,20 +44,13 @@ public class LogRequestFilter implements ContainerRequestFilter {
       if (c.hasEntity()) {
         s.append("\r\nRequest Body:\r\n  ");
 
-        //org.springframework.util.StreamUtils.copyToString(c.getEntityStream(), Charset.forName("UTF-8"));
-        StringBuilder out = new StringBuilder();
-        InputStreamReader reader = new InputStreamReader(c.getEntityStream(), Charset.forName("UTF-8"));
-        char[] buffer = new char[4096];
-        int bytesRead;
-        while ((bytesRead = reader.read(buffer)) != -1) {
-          out.append(buffer, 0, bytesRead);
-        }
-        s.append(out);
+        // copy request body for log
+        byte[] bytes = FileCopyUtils.copyToByteArray(c.getEntityStream());
+        s.append(new String(bytes, "UTF-8"));
+        // because only can read the request stream just once, so need to reset it again.
+        c.setEntityStream(new ByteArrayInputStream(bytes));
 
         logger.debug(s.toString());
-
-        // because only can read the request stream just once, so need to reset it again.
-        c.setEntityStream(new ByteArrayInputStream(out.toString().getBytes(Charset.forName("UTF-8"))));
       } else if (logger.isInfoEnabled()) {  // just log out method and path
         logger.info("{} {}", c.getMethod(), c.getUriInfo().getAbsolutePath());
       }
