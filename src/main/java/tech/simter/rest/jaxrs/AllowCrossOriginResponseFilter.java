@@ -76,18 +76,25 @@ public class AllowCrossOriginResponseFilter implements ContainerResponseFilter {
           || allowOrigins.contains(requestOrigin)) ||
         // confirm allow headers
         !(allowHeaders.isEmpty() || "*".equals(allowHeaders.get(0))     // allow all headers
-          || allowOrigins.containsAll(Arrays.asList(requestHeaders.toLowerCase().split(","))))
+          || allowHeaders.containsAll(Arrays.asList(requestHeaders.toLowerCase().split(","))))
         ) {
         responseContext.setStatusInfo(Response.Status.FORBIDDEN);
         return;
       }
 
-
+      // allow origin
       responseHeaders.putSingle("Access-Control-Allow-Origin", requestOrigin);
+
+      // allow methods
       if (allowMethods.isEmpty() || allowMethods.contains(requestMethod))
         responseHeaders.putSingle("Access-Control-Allow-Methods", requestMethod);
+
+      // allow headers
       responseHeaders.putSingle("Access-Control-Allow-Headers", requestHeaders);
+
+      // maxAge
       if (maxAge > 0) responseHeaders.putSingle("Access-Control-Max-Age", maxAge);
+
       responseContext.setStatusInfo(Response.Status.NO_CONTENT);
     } else {                                                                // real request
       String requestOrigin = requestContext.getHeaderString("Origin");
