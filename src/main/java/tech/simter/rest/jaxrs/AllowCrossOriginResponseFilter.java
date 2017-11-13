@@ -90,6 +90,10 @@ public class AllowCrossOriginResponseFilter implements ContainerResponseFilter {
         responseHeaders.putSingle("Access-Control-Allow-Methods", requestMethod);
 
       // allow headers
+      // -- auto expose 'Content-Disposition' header for 'application/octet-stream' download
+      if (requestHeaders.contains("content-disposition")) {
+        responseHeaders.putSingle("Access-Control-Expose-Headers", "content-disposition");
+      }
       responseHeaders.putSingle("Access-Control-Allow-Headers", requestHeaders);
 
       // maxAge
