@@ -5,7 +5,7 @@
     <groupId>tech.simter</groupId>
     <artifactId>simter-parent</artifactId>
     <version>0.3-SNAPSHOT</version>
-    <relativePath></relativePath>
+    <relativePath/>
   </parent>
   <artifactId>simter-rest-jaxrs</artifactId>
   <packaging>jar</packaging>
