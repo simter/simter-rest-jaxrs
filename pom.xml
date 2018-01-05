@@ -4,13 +4,13 @@
   <parent>
     <groupId>tech.simter</groupId>
     <artifactId>simter-parent</artifactId>
-    <version>0.3-SNAPSHOT</version>
-    <relativePath/>
+    <version>${revision}</version>
+    <relativePath>../simter-parent</relativePath>
   </parent>
   <artifactId>simter-rest-jaxrs</artifactId>
   <packaging>jar</packaging>
   <name>simter-rest-jaxrs</name>
-  <description>Some JAX-RS extensions</description>
+  <description>Simter Rest JAX-RS Extension</description>
   <url>https://github.com/simter/simter-rest-jaxrs</url>
   <licenses>
     <license>
@@ -28,7 +28,7 @@
   </organization>
   <developers>
     <developer>
-      <name>RJ Hwang</name>
+      <name>RJ.Hwang</name>
       <email>rongjihuang@gmail.com</email>
     </developer>
   </developers>
