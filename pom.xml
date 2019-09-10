@@ -4,10 +4,11 @@
   <parent>
     <groupId>tech.simter</groupId>
     <artifactId>simter-parent</artifactId>
-    <version>${revision}</version>
-    <relativePath>../simter-parent</relativePath>
+    <version>0.4.0</version>
+    <relativePath/>
   </parent>
   <artifactId>simter-rest-jaxrs</artifactId>
+  <version>0.4.1</version>
   <packaging>jar</packaging>
   <name>simter-rest-jaxrs</name>
   <description>Simter Rest JAX-RS Extension</description>
