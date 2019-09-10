@@ -32,28 +32,30 @@ import java.io.IOException;
 @Priority(Priorities.AUTHENTICATION)
 public class JwtAuthRequestFilter implements ContainerRequestFilter {
   private static Logger logger = LoggerFactory.getLogger(JwtAuthRequestFilter.class);
-  /**
-   * The header name to hold JWT token
-   */
+  /** The header name to hold JWT token */
   public static final String JWT_HEADER_NAME = "Authorization";
+  /** The prefix of the jwt header value */
+  public static final String JWT_VALUE_PREFIX = "Bearer "
   private final String secretKey;
-  private final boolean abortIfUnauthorized;
+  private final boolean requireAuthorized;
 
   /**
    * @param secretKey           the secret-key
-   * @param abortIfUnauthorized true to abort request if the JWT verified failed
+   * @param requireAuthorized true to abort request if the JWT verified failed
    */
-  public JwtAuthRequestFilter(@Value("${simter.jwt.secret-key:}") String secretKey,
-                              @Value("${simter.jwt.abort-if-unauthorized:false}") boolean abortIfUnauthorized) {
+  public JwtAuthRequestFilter(
+    @Value("${simter.jwt.secret-key:test}") String secretKey,
+    @Value("${simter.jwt.require-authorized:false}") boolean requireAuthorized
+    ) {
     this.secretKey = secretKey;
-    this.abortIfUnauthorized = abortIfUnauthorized;
+    this.requireAuthorized = requireAuthorized;
   }
 
   @Override
   public void filter(ContainerRequestContext c) throws IOException {
     String authorization = c.getHeaderString(JWT_HEADER_NAME);
-    if (authorization == null || authorization.isEmpty() || !authorization.startsWith("Bearer ")) {
-      if (abortIfUnauthorized) abortWithForbidden(c, "No valid JWT header");
+    if (authorization == null || authorization.isEmpty() || !authorization.startsWith(JWT_VALUE_PREFIX)) {
+      if (requireAuthorized) abortWithForbidden(c, "No valid jwt 'Authorization' header");
     } else {
       try {
         // verify and decode to a JWT instance
@@ -66,7 +68,7 @@ public class JwtAuthRequestFilter implements ContainerRequestFilter {
       } catch (DecodeException e) {
         if (logger.isDebugEnabled()) logger.debug(e.getMessage(), e);
         else logger.warn(e.getMessage());
-        if (abortIfUnauthorized) abortWithForbidden(c, "Invalid JWT");
+        if (requireAuthorized) abortWithForbidden(c, "Invalid JWT");
       }
     }
   }
