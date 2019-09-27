@@ -1,5 +1,15 @@
 # simter-rest-jaxrs changelog
 
+## 1.1.1 - 2019-09-27
+
+- Rename `simter.jwt.abort-if-unauthorized` to `simter.jwt.require-authorized`
+- Add `simter.jwt.exclude-paths` prop config to JwtAuthRequestFilter
+
+## 0.4.1 - 2019-09-10
+
+- Rename `simter.jwt.abort-if-unauthorized` to `simter.jwt.require-authorized`
+- Add `simter.jwt.exclude-paths` prop config to JwtAuthRequestFilter
+
 ## 1.1.0 - 2019-07-03
 
 No code changed, just polishing maven config and unit test.
@@ -16,15 +26,6 @@ No code changed, just polishing maven config and unit test.
 - Just align version
 
 ## 0.4.0 - 2018-01-05
-
-- Just centralize-version
-
-## 0.4.1 - 2019-09-10
-
-- Rename `simter.jwt.abort-if-unauthorized` to `simter.jwt.require-authorized`
-- Add `simter.jwt.exclude-paths` prop config to JwtAuthRequestFilter
-
-## 0.4.0 - 2017-12-25
 
 - Centralize version
 
