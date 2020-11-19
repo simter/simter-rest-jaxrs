@@ -1,5 +1,9 @@
 # simter-rest-jaxrs changelog
 
+## 2.0.0 - 2020-11-19
+
+- Upgrade to simter-dependencies-2.0.0
+
 ## 1.1.1 - 2019-09-27
 
 - Rename `simter.jwt.abort-if-unauthorized` to `simter.jwt.require-authorized`
